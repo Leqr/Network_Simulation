@@ -1,5 +1,5 @@
 # Network_Simulation
-Prog SV BA3 EPFL
+Prog SV EPFL
 
 version with a functional network class
 
