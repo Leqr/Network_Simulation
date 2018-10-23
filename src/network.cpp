@@ -16,7 +16,7 @@
 void Network::resize(const size_t &size){
     values.clear();
     for(size_t i(0); i < size ; ++i){
-        values.push_back(RNG.uniform_double(-100,100));
+        values.push_back(RNG.normal(0,1));
     }
 }
 
@@ -69,7 +69,7 @@ size_t Network::set_values(const std::vector<double> &new_nodes){
         for(size_t i(0); i < values.size() ; ++i){
             values[i] = new_nodes[i];
         }
-        return values.size();
+        return values.size(); //???????
     }
 }
 
