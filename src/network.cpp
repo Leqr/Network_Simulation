@@ -46,15 +46,18 @@ bool Network::add_link(const size_t &a, const size_t &b){
 size_t Network::random_connect(const double &mean){
     links.clear();
     unsigned int link_sum(0);
-    for(size_t e(0); e < values.size()-1;++e){
+    for(size_t e(0); e < values.size();++e){
         unsigned int degree(RNG.poisson(mean));
         bool added;
         for(int i(0); i < degree ; ++i){
-            std::vector<int> res{1};
-                RNG.uniform_int(res,0,values.size()-1);
-                added = this->add_link(e, res[0]);
+            std::vector<size_t> res;
+            for(size_t i(0); i < values.size() ; ++i){
+                res.push_back(i);
+            }
+            RNG.shuffle(res);
+            added = this->add_link(e, res[i]);
         }
-        if(added) link_sum += 2*degree;
+        if(added) link_sum += degree;
     }
     return link_sum;
 }
@@ -74,15 +77,7 @@ size_t Network::set_values(const std::vector<double> &new_nodes){
 }
 
 size_t Network::size() const{
-    
     return values.size();
-    
-    /*
-    std::set<size_t> nodestorage;
-    for(auto &e : links) nodestorage.insert(e.first);
-    return nodestorage.size();
-    unused part but should give the same result if links is updated with respect to values and if every node has at least one link.
-     */
 }
 
 size_t Network::degree(const size_t &_n) const {
