@@ -14,6 +14,7 @@
 #include <string>
 
 void Network::resize(const size_t &size){
+    links.clear();
     values.clear();
     for(size_t i(0); i < size ; ++i){
         values.push_back(RNG.normal(0,1));
@@ -38,7 +39,7 @@ bool Network::add_link(const size_t &a, const size_t &b){
         return true;
     }
     catch(const std::string &e){
-        std::cerr << e << std::endl;
+        //std::cerr << e << std::endl;
         return false;
     }
 }
@@ -72,7 +73,7 @@ size_t Network::set_values(const std::vector<double> &new_nodes){
         for(size_t i(0); i < values.size() ; ++i){
             values[i] = new_nodes[i];
         }
-        return values.size(); //???????
+        return values.size();
     }
 }
 
@@ -102,5 +103,3 @@ std::vector<size_t> Network::neighbors(const size_t &n) const {
     }
     return neighbors;
 }
-
-
