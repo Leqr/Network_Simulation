@@ -53,7 +53,9 @@ void Simulation::step() const {
         double cumul_neighbs = 0;
         for (auto I : _network->neighbors(node)) cumul_neighbs += _network->value(I);
         double ddeg(_network->degree(node));
-        next_values[node] = epsilon[node]*cumul_neighbs/ddeg+(1-epsilon[node])*_network->value(node);
+        if (ddeg > .5){
+            next_values[node] = epsilon[node]*cumul_neighbs/ddeg+(1-epsilon[node])*_network->value(node);
+        }
     }
     _network->set_values(next_values);
 }

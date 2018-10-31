@@ -39,7 +39,7 @@ bool Network::add_link(const size_t &a, const size_t &b){
         return true;
     }
     catch(const std::string &e){
-        //std::cerr << e << std::endl;
+        //std::cerr << e << std::endl;  //displays errors on the terminal
         return false;
     }
 }
