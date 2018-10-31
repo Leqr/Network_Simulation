@@ -14,6 +14,6 @@ build the project using the "cmake ." then "make" then "./testNetSim" command.
 you can create doxygen documentation if you create a doc folder and then use the "make doc" command after building the project.
 #
 #### Libraries needed to compile :
-Templatized C++ Command Line Parser Library, TCLAP : http://tclap.sourceforge.net
-Google Test, GTEST : https://github.com/google/googletest
+Templatized C++ Command Line Parser Library, TCLAP : http://tclap.sourceforge.net<br/>
+Google Test, GTEST : https://github.com/google/googletest<br/>
 CMAKE : https://cmake.org
