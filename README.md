@@ -12,4 +12,8 @@ you can get informations about the command line arguments using the "./NetSim -h
 build the project using the "cmake ." then "make" then "./testNetSim" command.
 #
 you can create doxygen documentation if you create a doc folder and then use the "make doc" command after building the project.
-
+#
+#### Libraries needed to compile :
+Templatized C++ Command Line Parser Library, TCLAP : http://tclap.sourceforge.net
+Google Test, GTEST : https://github.com/google/googletest
+CMAKE : https://cmake.org

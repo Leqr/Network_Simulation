@@ -36,7 +36,7 @@ public:
     The internal \ref values vector keeps the same size.
     @param[in] vector of new node values,
     @param[out] number of nodes succesfully reset.
-*/
+ */
     size_t set_values(const std::vector<double>&);
 /*! Number of nodes */
     size_t size() const;

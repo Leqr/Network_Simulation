@@ -53,7 +53,7 @@ size_t Network::random_connect(const double &mean){
         for(int i(0); i < degree ; ++i){
             std::vector<size_t> res;
             for(size_t i(0); i < values.size() ; ++i){
-                res.push_back(i);
+                if(i != e) res.push_back(i);
             }
             RNG.shuffle(res);
             added = this->add_link(e, res[i]);
