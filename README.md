@@ -11,6 +11,7 @@ you can get informations about the command line arguments using the "./NetSim -h
 #### To run the test (test_main.cpp) :<br/>
 build the project using the "cmake ." then "make" then "./testNetSim" command.
 #
+#### Documentation :
 you can create doxygen documentation if you create a doc folder and then use the "make doc" command after building the project.
 #
 #### Libraries needed to compile :

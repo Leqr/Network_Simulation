@@ -23,7 +23,7 @@ TEST(networkTest, connect) {
     EXPECT_FALSE(trylink);
     trylink = net.add_link(9,10);
     EXPECT_TRUE(trylink);
-    EXPECT_EQ(net.degree(9)+net.degree(10), 2);    
+    EXPECT_EQ(net.degree(9)+net.degree(10), 2);
     trylink = net.add_link(9,8);
     trylink = net.add_link(1,9);
     std::vector<size_t> ngb = net.neighbors(9);

@@ -10,7 +10,7 @@ class RandomNumbers {
 
 public:
 /*! @name Initializing
-  The generator \ref rng is a Mersenne twister *mt19937* engine. 
+  The generator \ref rng is a Mersenne twister *mt19937* engine.
   A seed *s>0* can be provided, by default it is seeded with a *random_device*.
 */
 ///@{
@@ -19,9 +19,9 @@ public:
 ///@}
 
 /*! @name Distributions
-  These functions either return a single number 
-  or fill a given vector with random numbers distributed 
-  according the specified distributions. 
+  These functions either return a single number
+  or fill a given vector with random numbers distributed
+  according the specified distributions.
   The additional parameters are the standard parameters of these distributions.
 */
 ///@{
@@ -37,7 +37,7 @@ public:
   Shuffle take a vector of *size_t* and re-orders it randomly.
  */
     void shuffle(std::vector<size_t> &_v) {std::shuffle(_v.begin(), _v.end(), rng);}
-     
+    
 private:
     std::mt19937 rng;
     long int seed;

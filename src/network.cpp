@@ -7,10 +7,7 @@
 
 #include <iostream>
 #include "network.h"
-#include <list>
-#include <set>
 #include "random.h"
-#include <algorithm>
 #include <string>
 
 void Network::resize(const size_t &size){
@@ -39,28 +36,46 @@ bool Network::add_link(const size_t &a, const size_t &b){
         return true;
     }
     catch(const std::string &e){
-        //std::cerr << e << std::endl;  //displays errors on the terminal
+        std::cerr << e << std::endl;  //displays errors on the terminal
         return false;
     }
 }
 
 size_t Network::random_connect(const double &mean){
     links.clear();
-    unsigned int link_sum(0);
-    for(size_t e(0); e < values.size();++e){
-        unsigned int degree(RNG.poisson(mean));
-        bool added;
-        for(int i(0); i < degree ; ++i){
-            std::vector<size_t> res;
+    unsigned int total_link_sum(0);
+    for(size_t e(0); e < values.size(); ++e){
+        try{
+            std::vector<size_t> res;    //vector with the indexes of the nodes that the current node can link to.
             for(size_t i(0); i < values.size() ; ++i){
                 if(i != e) res.push_back(i);
             }
             RNG.shuffle(res);
-            added = this->add_link(e, res[i]);
+            unsigned int degree;
+            unsigned int count_poisson(0);
+            do{
+                degree = RNG.poisson(mean);
+                ++count_poisson;
+                if(count_poisson > 100) throw std::runtime_error("ERROR : can't make that many links for a node");
+            }while(degree > res.size());
+            // the max number of links in the network for n nodes is (n-1)+(n-2)+...+2+1 = (n-1)n/2
+            unsigned int links_created(0);
+            unsigned int index(0);
+                while(links_created < degree){
+                    bool added(false);
+                    do{
+                        added = this->add_link(e, res[index]);
+                        ++index;
+                        if(index >= values.size()-1) throw std::out_of_range("ERROR : node has (n-1) links");
+                    }while(!added);
+                    ++links_created;
+                }
+            total_link_sum += links_created;
+        } catch(const std::exception& e){
+            std::cerr << e.what() << std::endl; //displays errors on the terminal
         }
-        if(added) link_sum += degree;
     }
-    return link_sum;
+    return total_link_sum;
 }
 
 size_t Network::set_values(const std::vector<double> &new_nodes){
